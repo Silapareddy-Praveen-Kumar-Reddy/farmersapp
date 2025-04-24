@@ -17,6 +17,7 @@ This application includes the following key features:
 * **Product Details Page:** Upon selecting a product, users are directed to a dedicated page providing in-depth information, including descriptions, specifications, customer reviews, and related products.
 * **Shopping Cart:** Allows users to review selected items, adjust quantities, remove items, and proceed to the checkout process.
 * **Settings Page:** Provides options for users to customize their app experience, such as managing notifications, language preferences, and potentially delivery addresses.
+* **Vendor Opportunities:** A section dedicated to vendors, potentially allowing them to register, list products, and manage their sales within the app.
 
 ## Tech Stack
 
@@ -39,33 +40,70 @@ To run this application on your local machine, follow these steps:
     * Install Android Studio: [https://developer.android.com/studio](https://developer.android.com/studio)
     * Set up an Android emulator or connect a physical Android device.
 2.  **Clone the repository:**
+
     ```bash
     git clone <repository_url>
     ```
 3.  **Navigate to the project directory:**
+
     ```bash
     cd <project_directory>
     ```
 4.  **Get dependencies:**
+
     ```bash
     flutter pub get
     ```
 5.  **Run the application:**
+
     ```bash
     flutter run
     ```
 
 ## Project Structure
+```
+├── android/
+├── ios/
+├── lib/
+│   ├── data/
+│   │   └── product_data.dart
+│   ├── models/
+│   │   ├── cart_item.dart
+│   │   └── product.dart
+│   ├── providers/
+│   │   ├── auth_provider.dart
+│   │   ├── cart_provider.dart
+│   │   └── favorites_provider.dart
+│   ├── screens/
+│   │   ├── cart_screen.dart
+│   │   ├── checkout_screen.dart
+│   │   ├── contact_screen.dart
+│   │   ├── home_page.dart
+│   │   ├── main_screen.dart
+│   │   ├── product_list_screen.dart
+│   │   ├── profile_screen.dart
+│   │   ├── vendor_form_screen.dart
+│   │   └── vendor_opportunities_screen.dart
+│   ├── widgets/
+│   └── main.dart
+├── linux/
+├── macos/
+├── test/
+├── web/
+└── windows/
+```
 
-*(You can elaborate on the project's directory structure here, if you wish. For example:)*
-
+## APP UI DESIGN
 HOME PAGE
 ![Screenshot 2025-04-24 144650](https://github.com/user-attachments/assets/0ab57996-085d-471b-8a37-8026dcf7375d)
-![Screenshot 2025-04-24 144712](https://github.com/user-attachments/assets/e6236c78-8b69-4632-b974-59bad9158655)
+PRODUCT PAGE 
 ![Screenshot 2025-04-24 144748](https://github.com/user-attachments/assets/b56b2921-dc66-4ca0-b102-03132f76d6cd)
-![Screenshot 2025-04-24 144815](https://github.com/user-attachments/assets/aa9f650e-5b7d-44da-9345-31eba49b0d3a)
+CART PAGE
 ![Screenshot 2025-04-24 144839](https://github.com/user-attachments/assets/89fd287b-4efd-42f0-acb2-36c7fef1ec1c)
+ORDER PAGE
 ![Screenshot 2025-04-24 145620](https://github.com/user-attachments/assets/b690edb4-ad92-4c1c-8e23-f3177bed0e1e)
+CONTACT PAGE 
 ![Screenshot 2025-04-24 145648](https://github.com/user-attachments/assets/8096002e-842f-4cf7-af76-65509b19881f)
+VENDOR REGISTRATION PAGES 
 ![Screenshot 2025-04-24 145715](https://github.com/user-attachments/assets/22a3504f-15bd-45c5-a1d1-9e4c6d2b0e02)
 ![Screenshot 2025-04-24 145733](https://github.com/user-attachments/assets/1394ee82-3279-436e-8dab-fc97552f953b)
