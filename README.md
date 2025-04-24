@@ -1,16 +1,10 @@
-# agribridge
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+HOME PAGE
+![Screenshot 2025-04-24 144650](https://github.com/user-attachments/assets/0ab57996-085d-471b-8a37-8026dcf7375d)
+![Screenshot 2025-04-24 144712](https://github.com/user-attachments/assets/e6236c78-8b69-4632-b974-59bad9158655)
+![Screenshot 2025-04-24 144748](https://github.com/user-attachments/assets/b56b2921-dc66-4ca0-b102-03132f76d6cd)
+![Screenshot 2025-04-24 144815](https://github.com/user-attachments/assets/aa9f650e-5b7d-44da-9345-31eba49b0d3a)
+![Screenshot 2025-04-24 144839](https://github.com/user-attachments/assets/89fd287b-4efd-42f0-acb2-36c7fef1ec1c)
+![Screenshot 2025-04-24 145620](https://github.com/user-attachments/assets/b690edb4-ad92-4c1c-8e23-f3177bed0e1e)
+![Screenshot 2025-04-24 145648](https://github.com/user-attachments/assets/8096002e-842f-4cf7-af76-65509b19881f)
+![Screenshot 2025-04-24 145715](https://github.com/user-attachments/assets/22a3504f-15bd-45c5-a1d1-9e4c6d2b0e02)
+![Screenshot 2025-04-24 145733](https://github.com/user-attachments/assets/1394ee82-3279-436e-8dab-fc97552f953b)
