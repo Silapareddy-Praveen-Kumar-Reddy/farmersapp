@@ -42,7 +42,7 @@ To run this application on your local machine, follow these steps:
 2.  **Clone the repository:**
 
     ```bash
-    git clone <repository_url>
+    git clone https://github.com/silapareddy/Agribridge.git
     ```
 3.  **Navigate to the project directory:**
 
