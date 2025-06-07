@@ -21,7 +21,7 @@ jobs:
       # Use the Flutter setup action instead of Dart setup
       - uses: subosito/flutter-action@v2 # This action sets up the Flutter SDK (which includes Dart)
         with:
-          flutter-version: '3.22.2' # Specify your Flutter version, e.g., '3.19.x' or '3.22.x'
+          flutter-version: '3.22.x' # Specify your Flutter version, e.g., '3.19.x' or '3.22.x'
           channel: 'stable'       # Or 'beta', 'master'
 
       - name: Install dependencies
