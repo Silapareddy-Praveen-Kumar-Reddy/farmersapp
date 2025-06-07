@@ -2,63 +2,9 @@
 
 A mobile shopping application built using Flutter and Android Studio. This app provides users with a seamless shopping experience, encompassing features such as browsing products, managing their profile, viewing purchase history, and more.
 
-## Features
-
-This application includes the following key features:
-
-* **Splash Screen:** An initial screen displayed upon app launch, providing a smooth transition to the main app.
-* **Authentication:**
-    * **Login Page:** Allows existing users to securely access their accounts.
-    * **Registration Page:** Enables new users to create accounts.
-* **Home Page:** The central hub showcasing a curated selection of products, special offers, and product categories. Includes search functionality and easy navigation.
-* **Profile Page:** Users can view and manage their personal information, including name, address, contact details, and potentially payment methods. Options for password changes and account settings are also available.
-* **Purchases Page:** Displays a detailed history of user orders, including order dates, IDs, purchased items, and total amounts. Users can track order statuses and potentially initiate returns.
-* **Products Page:** A comprehensive listing of available products, complete with images, names, prices, ratings, and other relevant details. Users can easily browse and select products of interest.
-* **Product Details Page:** Upon selecting a product, users are directed to a dedicated page providing in-depth information, including descriptions, specifications, customer reviews, and related products.
-* **Shopping Cart:** Allows users to review selected items, adjust quantities, remove items, and proceed to the checkout process.
-* **Settings Page:** Provides options for users to customize their app experience, such as managing notifications, language preferences, and potentially delivery addresses.
-* **Vendor Opportunities:** A section dedicated to vendors, potentially allowing them to register, list products, and manage their sales within the app.
-
-## Tech Stack
-
-* **Flutter:** A UI toolkit for building natively compiled applications for mobile, web, and desktop from a single codebase.
-* **Android Studio:** The official IDE for Android development, used for building and debugging the Flutter application. (While Flutter is cross-platform, Android Studio is a common IDE used for Flutter development, especially when targeting Android).
-* **(Potentially) Backend Services:** Depending on the complexity, this app might integrate with a backend service for managing product data, user accounts, and order processing. This could involve technologies like:
-    * **Firebase:** For authentication, database (Firestore), and storage.
-    * **Node.js with Express:** For building a custom API.
-    * **Django or Flask (Python):** Another option for backend API development.
-    * **Other RESTful APIs.**
-* **(Potentially) State Management:** For managing the application's state efficiently (e.g., Provider, BLoC/Cubit, Riverpod).
-* **(Potentially) Other Dependencies:** Libraries for tasks such as image caching, network requests, and UI enhancements.
-
-## Getting Started
-
-To run this application on your local machine, follow these steps:
-
-1.  **Prerequisites:**
-    * Install Flutter SDK according to the official Flutter documentation: [https://flutter.dev/docs/get-started/install](https://flutter.dev/docs/get-started/install)
-    * Install Android Studio: [https://developer.android.com/studio](https://developer.android.com/studio)
-    * Set up an Android emulator or connect a physical Android device.
-2.  **Clone the repository:**
-
-    ```bash
-    git clone https://github.com/silapareddy/Agribridge.git
-    ```
-3.  **Navigate to the project directory:**
-
-    ```bash
-    cd <project_directory>
-    ```
-4.  **Get dependencies:**
-
-    ```bash
-    flutter pub get
-    ```
-5.  **Run the application:**
-
-    ```bash
-    flutter run
-    ```
+## Tech Stack : ![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white) ![Firebase](https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase) ![EJS](https://img.shields.io/badge/ejs-%23B4CA65.svg?style=for-the-badge&logo=ejs&logoColor=black) ![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white)
+HOME PAGE
+![Screenshot 2025-04-24 144650](https://github.com/user-attachments/assets/0ab57996-085d-471b-8a37-8026dcf7375d)
 
 ## Project Structure
 ```
@@ -92,10 +38,6 @@ To run this application on your local machine, follow these steps:
 ├── web/
 └── windows/
 ```
-
-## APP UI DESIGN
-HOME PAGE
-![Screenshot 2025-04-24 144650](https://github.com/user-attachments/assets/0ab57996-085d-471b-8a37-8026dcf7375d)
 PRODUCT PAGE 
 ![Screenshot 2025-04-24 144748](https://github.com/user-attachments/assets/b56b2921-dc66-4ca0-b102-03132f76d6cd)
 CART PAGE
