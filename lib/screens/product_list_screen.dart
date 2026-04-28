@@ -2,10 +2,38 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/cart_provider.dart';
 import '../models/product.dart';
+import '../data/product_data.dart';
 import '../widgets/floating_cart_button.dart';
 
-class ProductListScreen extends StatelessWidget {
+class ProductListScreen extends StatefulWidget {
   const ProductListScreen({super.key});
+
+  @override
+  State<ProductListScreen> createState() => _ProductListScreenState();
+}
+
+class _ProductListScreenState extends State<ProductListScreen> {
+  String _searchQuery = '';
+  final TextEditingController _searchController = TextEditingController();
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  List<Product> _getFilteredProducts(String category) {
+    return ProductData.products.where((product) {
+      final matchesCategory =
+          product.category.toLowerCase() == category.toLowerCase();
+      final matchesSearch = _searchQuery.isEmpty ||
+          product.name.toLowerCase().contains(_searchQuery.toLowerCase()) ||
+          product.description
+              .toLowerCase()
+              .contains(_searchQuery.toLowerCase());
+      return matchesCategory && matchesSearch;
+    }).toList();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +49,56 @@ class ProductListScreen extends StatelessWidget {
             ],
           ),
         ),
-        body: TabBarView(
+        body: Column(
           children: [
-            _buildProductGrid(context, 'vegetables'),
-            _buildProductGrid(context, 'lifestyle'),
+            // Search Bar
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: TextField(
+                controller: _searchController,
+                onChanged: (value) {
+                  setState(() {
+                    _searchQuery = value;
+                  });
+                },
+                decoration: InputDecoration(
+                  hintText: 'Search products...',
+                  prefixIcon:
+                      const Icon(Icons.search, color: Color(0xFF34A853)),
+                  suffixIcon: _searchQuery.isNotEmpty
+                      ? IconButton(
+                          icon: const Icon(Icons.clear),
+                          onPressed: () {
+                            setState(() {
+                              _searchQuery = '';
+                              _searchController.clear();
+                            });
+                          },
+                        )
+                      : null,
+                  filled: true,
+                  fillColor: Colors.grey[100],
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide.none,
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide:
+                        const BorderSide(color: Color(0xFF34A853), width: 2),
+                  ),
+                ),
+              ),
+            ),
+            // Product Grid
+            Expanded(
+              child: TabBarView(
+                children: [
+                  _buildProductGrid(context, 'Vegetables'),
+                  _buildProductGrid(context, 'Lifestyle'),
+                ],
+              ),
+            ),
           ],
         ),
         floatingActionButton: const FloatingCartButton(),
@@ -33,7 +107,25 @@ class ProductListScreen extends StatelessWidget {
   }
 
   Widget _buildProductGrid(BuildContext context, String category) {
-    final products = _getProductsByCategory(category);
+    final products = _getFilteredProducts(category);
+
+    if (products.isEmpty) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.search_off, size: 64, color: Colors.grey[400]),
+            const SizedBox(height: 16),
+            Text(
+              _searchQuery.isEmpty
+                  ? 'No products available'
+                  : 'No results for "$_searchQuery"',
+              style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+            ),
+          ],
+        ),
+      );
+    }
 
     return GridView.builder(
       padding: const EdgeInsets.all(16),
@@ -101,12 +193,15 @@ class ProductListScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          '₹${product.price.toStringAsFixed(2)}/${product.unit}',
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF34A853),
+                        Expanded(
+                          child: Text(
+                            '₹${product.price.toStringAsFixed(0)}/${product.unit}',
+                            style: const TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF34A853),
+                            ),
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
                         IconButton(
@@ -118,6 +213,7 @@ class ProductListScreen extends StatelessWidget {
                               SnackBar(
                                 content: Text('${product.name} added to cart'),
                                 duration: const Duration(seconds: 2),
+                                behavior: SnackBarBehavior.floating,
                               ),
                             );
                           },
@@ -132,138 +228,5 @@ class ProductListScreen extends StatelessWidget {
         );
       },
     );
-  }
-
-  List<Product> _getProductsByCategory(String category) {
-    // Sample products - replace with your actual data
-    final List<Product> allProducts = [
-      // Vegetables
-      Product(
-        id: '1',
-        name: 'Fresh Tomatoes',
-        description: 'Organic, vine-ripened tomatoes',
-        price: 2.99,
-        imageUrl:
-            'https://images.unsplash.com/photo-1518977676601-b53f82aba655',
-        category: 'vegetables',
-        unit: 'kg',
-      ),
-      Product(
-        id: '2',
-        name: 'Organic Carrots',
-        description: 'Fresh, crunchy carrots',
-        price: 1.99,
-        imageUrl:
-            'https://images.unsplash.com/photo-1447175008436-0541c9e0e0e3',
-        category: 'vegetables',
-        unit: 'kg',
-      ),
-      Product(
-        id: '3',
-        name: 'Green Bell Peppers',
-        description: 'Crisp and sweet peppers',
-        price: 3.49,
-        imageUrl:
-            'https://images.unsplash.com/photo-1563642421748-5047b658a1e4',
-        category: 'vegetables',
-        unit: 'kg',
-      ),
-      Product(
-        id: '4',
-        name: 'Fresh Broccoli',
-        description: 'Nutritious and delicious',
-        price: 2.49,
-        imageUrl:
-            'https://images.unsplash.com/photo-1584270354949-c26b0d5b4a0c',
-        category: 'vegetables',
-        unit: 'kg',
-      ),
-      Product(
-        id: '5',
-        name: 'Organic Spinach',
-        description: 'Fresh leafy greens',
-        price: 3.99,
-        imageUrl:
-            'https://images.unsplash.com/photo-1576045057995-568f588f82fb',
-        category: 'vegetables',
-        unit: 'kg',
-      ),
-      Product(
-        id: '6',
-        name: 'Sweet Potatoes',
-        description: 'Rich in vitamins and minerals',
-        price: 1.99,
-        imageUrl:
-            'https://images.unsplash.com/photo-1563642421748-5047b658a1e4',
-        category: 'vegetables',
-        unit: 'kg',
-      ),
-
-      // Lifestyle Products
-      Product(
-        id: '7',
-        name: 'Organic Gardening Kit',
-        description: 'Complete kit for home gardening',
-        price: 29.99,
-        imageUrl:
-            'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=500&h=500&fit=crop',
-        category: 'lifestyle',
-        unit: 'piece',
-      ),
-      Product(
-        id: '8',
-        name: 'Compost Bin',
-        description: 'Eco-friendly composting solution',
-        price: 49.99,
-        imageUrl:
-            'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=500&h=500&fit=crop',
-        category: 'lifestyle',
-        unit: 'piece',
-      ),
-      Product(
-        id: '9',
-        name: 'Watering Can',
-        description: 'Durable metal watering can',
-        price: 19.99,
-        imageUrl:
-            'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=500&h=500&fit=crop',
-        category: 'lifestyle',
-        unit: 'piece',
-      ),
-      Product(
-        id: '10',
-        name: 'Garden Tools Set',
-        description: 'Essential tools for gardening',
-        price: 39.99,
-        imageUrl:
-            'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=500&h=500&fit=crop',
-        category: 'lifestyle',
-        unit: 'set',
-      ),
-      Product(
-        id: '11',
-        name: 'Plant Pots',
-        description: 'Set of 3 ceramic pots',
-        price: 24.99,
-        imageUrl:
-            'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=500&h=500&fit=crop',
-        category: 'lifestyle',
-        unit: 'set',
-      ),
-      Product(
-        id: '12',
-        name: 'Organic Seeds Pack',
-        description: 'Variety of vegetable seeds',
-        price: 14.99,
-        imageUrl:
-            'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=500&h=500&fit=crop',
-        category: 'lifestyle',
-        unit: 'pack',
-      ),
-    ];
-
-    return allProducts
-        .where((product) => product.category == category)
-        .toList();
   }
 }

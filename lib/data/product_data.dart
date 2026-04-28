@@ -70,7 +70,7 @@ class ProductData {
       price: 35,
       imageUrl:
           'https://images.unsplash.com/photo-1618512496248-a07fe83aa8cb?w=500',
-      category: 'Vegetables', unit: '',
+      category: 'Vegetables', unit: 'kg',
     ),
     Product(
       id: '8',
@@ -79,7 +79,7 @@ class ProductData {
       price: 40,
       imageUrl:
           'https://images.unsplash.com/photo-1613743983303-b3e89f8a2b80?w=500',
-      category: 'Vegetables', unit: '',
+      category: 'Vegetables', unit: 'piece',
     ),
 
     // Lifestyle Section (keeping some lifestyle products)
@@ -90,7 +90,7 @@ class ProductData {
       price: 200,
       imageUrl:
           'https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=500',
-      category: 'Lifestyle', unit: '',
+      category: 'Lifestyle', unit: 'jar',
     ),
     Product(
       id: '10',
@@ -99,7 +99,7 @@ class ProductData {
       price: 120,
       imageUrl:
           'https://images.unsplash.com/photo-1597481499750-3e6b22637e12?w=500',
-      category: 'Lifestyle', unit: '',
+      category: 'Lifestyle', unit: 'pack',
     ),
   ];
 }

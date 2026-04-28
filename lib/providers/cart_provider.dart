@@ -1,21 +1,6 @@
 import 'package:flutter/foundation.dart';
+import '../models/cart_item.dart';
 import '../models/product.dart';
-
-class CartItem {
-  final String id;
-  final String name;
-  final double price;
-  final String imageUrl;
-  int quantity;
-
-  CartItem({
-    required this.id,
-    required this.name,
-    required this.price,
-    required this.imageUrl,
-    this.quantity = 1,
-  });
-}
 
 class CartProvider with ChangeNotifier {
   final Map<String, CartItem> _items = {};
@@ -36,11 +21,7 @@ class CartProvider with ChangeNotifier {
     if (_items.containsKey(product.id)) {
       _items.update(
         product.id,
-        (existingItem) => CartItem(
-          id: existingItem.id,
-          name: existingItem.name,
-          price: existingItem.price,
-          imageUrl: existingItem.imageUrl,
+        (existingItem) => existingItem.copyWith(
           quantity: existingItem.quantity + 1,
         ),
       );
@@ -65,16 +46,14 @@ class CartProvider with ChangeNotifier {
 
   void updateQuantity(String productId, int quantity) {
     if (_items.containsKey(productId)) {
-      _items.update(
-        productId,
-        (existingItem) => CartItem(
-          id: existingItem.id,
-          name: existingItem.name,
-          price: existingItem.price,
-          imageUrl: existingItem.imageUrl,
-          quantity: quantity,
-        ),
-      );
+      if (quantity <= 0) {
+        _items.remove(productId);
+      } else {
+        _items.update(
+          productId,
+          (existingItem) => existingItem.copyWith(quantity: quantity),
+        );
+      }
       notifyListeners();
     }
   }
